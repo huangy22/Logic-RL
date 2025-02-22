@@ -1,11 +1,11 @@
 
 # Logic-RL
 
-## 📢 **Our detailed technical report is released!** 
+## 📢 **Our detailed technical report is released!**
 
 <a href='https://arxiv.org/abs/2502.14768'><img src='https://img.shields.io/badge/arXiv-2502.14768-b31b1b.svg'></a> &nbsp;
 
-Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning 
+Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning
 ---
 
 <table>
@@ -46,6 +46,26 @@ pip install -e .  # For verl integration
 pip install wandb IPython matplotlib
 ```
 
+When flash-attn install is taking too long, try the following recipe before install flash-attn:
+```bash
+pip install ninja
+ninja --version
+echo $? # make sure output is 0
+MAX_JOBS=4 pip -v install flash-attn==2.7.3 --no-build-isolation
+```
+
+If seeing error msg
+```
+torch.__version__  = 2.1.0.dev20230815+cu121
+running bdist_wheel
+Guessing wheel URL:  https://github.com/Dao-AILab/flash-attention/releases/download/v2.1.1/flash_attn-2.1.1+cu121torch2.1cxx11abiFALSE-cp39-cp39-linux_x86_64.whl
+error: Remote end closed connection without response
+[end of output]
+```
+try the following
+```bash
+pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.1.1/flash_attn-2.1.1+cu121torch2.1cxx11abiFALSE-cp39-cp39-linux_x86_64.whl
+```
 ---
 
 ## Data Preparation
@@ -92,13 +112,13 @@ bash main_grpo.sh  # 4×A100 80G
 ## Citation
 ```
 @misc{xie2025logicrlunleashingllmreasoning,
-      title={Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning}, 
+      title={Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning},
       author={Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and Yuqian Hong and Bryan Dai and Joey Zhou and Kai Qiu and Zhirong Wu and Chong Luo},
       year={2025},
       eprint={2502.14768},
       archivePrefix={arXiv},
       primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2502.14768}, 
+      url={https://arxiv.org/abs/2502.14768},
 }
 ```
 
