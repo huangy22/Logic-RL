@@ -50,7 +50,7 @@ def parse_solution_text_format(solution_text: str) -> Optional[int]:
     
     return res
 
-def parse_model_answer(answer_text: str, expected_names: list) -> Optional[int]:
+def parse_model_answer(answer_text: str) -> Optional[int]:
     """Parses model's answer text into status dictionary.
     
     Args:
@@ -67,7 +67,7 @@ def parse_model_answer(answer_text: str, expected_names: list) -> Optional[int]:
             return True
         except ValueError:
             return False
-    text = text.replace(',', '').strip('.')
+    text = answer_text.replace(',', '').strip('.')
     numbers = [int(n) for n in text.split() if is_integer(n)]
     if len(numbers) >= 1:
         print(f"  Found: {numbers[-1]}")
